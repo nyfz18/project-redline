@@ -23,7 +23,13 @@ import RequestGenerator, {
 const REQUESTS_PER_DAY = 5;
 const MAX_DAYS = 3;
 
+/*------------------------------------------------------------------------*/
+/* ------------------------------ Component ----------------------------- */
+/*------------------------------------------------------------------------*/
 const Game: React.FC = () => {
+    /*------------------------------------------------------------------------*/
+    /* -------------------------------- Setup ------------------------------- */
+    /*------------------------------------------------------------------------*/
     const [day, setDay] = useState(1);
     const [index, setIndex] = useState(0);
     const [showNews, setShowNews] = useState(false);
@@ -33,6 +39,10 @@ const Game: React.FC = () => {
     const [headlines, setHeadlines] = useState<string[]>([]);
 
     const [requests, setRequests] = useState<CitizenRequest[]>([]);
+
+    /*------------------------------------------------------------------------*/
+    /* ------------------------- Lifecycle Functions ------------------------ */
+    /*------------------------------------------------------------------------*/
 
     // Generate initial requests
     useEffect(() => {
@@ -119,4 +129,5 @@ const Game: React.FC = () => {
   );
 };
 
+// Export Game Component
 export default Game;

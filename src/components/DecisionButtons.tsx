@@ -1,3 +1,4 @@
+// importing assets
 import approveIcon from "../assets/approve.png";
 import denyIcon from "../assets/deny.png";
 

@@ -42,7 +42,9 @@ const generateHeadlines = (morality: number, obedience: number): string[] => {
     return headlines;
 };
 
+// Newspaper component to display headlines
 const Newspaper: React.FC<Props> = ({ morality, obedience }) => {
+    // Generate headlines based on morality and obedience scores
     const headlines = generateHeadlines(morality, obedience);
 
     return (

@@ -1,7 +1,18 @@
 // the card UI
+// Import FontAwesome for icons
+import { 
+    FontAwesomeIcon 
+} from '@fortawesome/react-fontawesome';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faCircleExclamation 
+} from '@fortawesome/free-solid-svg-icons';
+
+
+/*------------------------------------------------------------------------*/
+/* -------------------------------- Types ------------------------------- */
+/*------------------------------------------------------------------------*/
+
 
 // Request details of a citizen
 type Request = {
@@ -17,12 +28,19 @@ type Request = {
     ruleViolated?: boolean;
 };
 
+// Props definition
 type Props = {
     // Request object containing details of the citizen's request
     request: Request;
 }
 
+/*------------------------------------------------------------------------*/
+/* ------------------------------ Component ----------------------------- */
+/*------------------------------------------------------------------------*/
 const RequestCard: React.FC<Props> = ({ request }: Props) => {
+    /*----------------------------------------*/
+    /* --------------- Main UI -------------- */
+    /*----------------------------------------*/
     return (
         <div className="border rounded-xl p-4 shadow-md">
             <h2 className="text-xl font-bold">
