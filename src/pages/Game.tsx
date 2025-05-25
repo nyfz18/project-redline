@@ -18,6 +18,7 @@ import RequestGenerator, {
 } from "../utils/requestGenerator";
 
 const REQUESTS_PER_DAY = 5;
+const MAX_DAYS = 7;
 
 const Game: React.FC = () => {
     const [day, setDay] = useState(1);
@@ -80,7 +81,7 @@ const Game: React.FC = () => {
         setRequests(RequestGenerator.generateRequestBatch(REQUESTS_PER_DAY)); // New batch each day
     };
 
-    if (index >= requests.length && !showNews) {
+    if (day > MAX_DAYS && !showNews) {
         return <EndScreen morality={morality} obedience={obedience} />;
     }
 
@@ -88,12 +89,18 @@ const Game: React.FC = () => {
         <div className="p-6 space-y-6">
             <h1 className="text-2xl font-bold">Day {day}</h1>
             {!showNews ? (
+        <>
+        {requests[index] ? (
             <>
                 <RequestCard request={requests[index]} />
                 <DecisionButtons onDecision={handleDecision} />
-                <ScoreTracker morality={morality} obedience={obedience} />
             </>
             ) : (
+        <p>Loading request...</p>
+        )}
+        <ScoreTracker morality={morality} obedience={obedience} />
+        </>
+        ) : (
             <div>
                 <Newspaper morality={morality} obedience={obedience} />
                 <button
