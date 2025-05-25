@@ -4,7 +4,7 @@ import {
 
 // assets
 import startIcon from "./assets/start.png";
-import titleIcon from "./assets/title.png";
+// import titleIcon from "./assets/title.png";
 
 import Game from "./pages/Game";
 
@@ -16,13 +16,18 @@ function App() {
       {!started ? (
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">
-            <img 
+            {/* <img 
               src={titleIcon} 
               alt="title" 
               style={{ width: "300px", height: "50px", objectFit: "contain" }} 
-            />
+            /> */}
+            Project Redline
           </h1>
           <p className="text-lg">Make decisions. Face consequences.</p>
+          <p> 
+              Your duty is to ensure your country's borders are safe. 
+              Only let those who are safe in or out. 
+          </p>
           <img onClick={() => 
             setStarted(true)} 
             src={startIcon} 
