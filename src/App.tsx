@@ -8,11 +8,13 @@ import startIcon from "./assets/start.png";
 
 import Game from "./pages/Game";
 
+import './App.css';
+
 function App() {
   const [started, setStarted] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 flex items-center justify-center p-6">
+    <div className="app-container">
       {!started ? (
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">
@@ -32,7 +34,7 @@ function App() {
             setStarted(true)} 
             src={startIcon} 
             alt="start" 
-            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+            style={{ width: "100px", height: "100px", objectFit: "contain", cursor: "pointer" }}
           />
         </div>
       ) : (
