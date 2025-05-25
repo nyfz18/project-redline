@@ -1,6 +1,9 @@
 import { 
   useState 
 } from "react";
+
+import startIcon from "./assets/start.png";
+
 import Game from "./pages/Game";
 
 function App() {
@@ -12,12 +15,12 @@ function App() {
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Project Redline</h1>
           <p className="text-lg">Make decisions. Face consequences.</p>
-          <button
-            className="bg-blue-600 text-white px-6 py-2 rounded"
-            onClick={() => setStarted(true)}
-          >
-            Start Game.
-          </button>
+          <img onClick={() => 
+            setStarted(true)} 
+            src={startIcon} 
+            alt="start" 
+            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+          />
         </div>
       ) : (
         <Game />

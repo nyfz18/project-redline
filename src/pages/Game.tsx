@@ -5,6 +5,9 @@ import {
     useEffect,
 } from "react";
 
+// Assets 
+import continueIcon from "../assets/continue.png";
+
 // Components
 import RequestCard from "../components/RequestCard";
 import DecisionButtons from "../components/DecisionButtons";
@@ -82,6 +85,7 @@ const Game: React.FC = () => {
     };
 
     if (day > MAX_DAYS && !showNews) {
+
         return <EndScreen morality={morality} obedience={obedience} />;
     }
 
@@ -103,12 +107,12 @@ const Game: React.FC = () => {
         ) : (
             <div>
                 <Newspaper morality={morality} obedience={obedience} />
-                <button
-                    onClick={handleNextDay}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                    Continue to Next Day
-                </button>
+                <img onClick=
+                    {handleNextDay}
+                    src={continueIcon} 
+                    alt="continue to next day" 
+                    style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+                />
             </div>
             )}
         </div>
