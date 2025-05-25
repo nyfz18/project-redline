@@ -19,12 +19,6 @@ const DecisionButtons: React.FC<Props> = ({ onDecision }: Props) => {
             >
             Deny
         </button>
-        <button onClick={() => 
-            onDecision("delay")} 
-            className="btn"
-            >
-            Delay
-        </button>
     </div>
     );
 }
