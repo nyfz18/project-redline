@@ -43,19 +43,19 @@ const Game: React.FC = () => {
 
         if (choice === "approve") {
             if (request.ruleViolated) {
-            newMorality += 1;
-            newHeadline = `You approved an illegal request. ${request.name} was saved.`;
+                newMorality += 1;
+                newHeadline = `You approved an illegal request. ${request.name} was saved.`;
             } else {
-            newObedience += 1;
-            newHeadline = `${request.name} received approval. All rules followed.`;
+                newObedience += 1;
+                newHeadline = `${request.name} received approval. All rules followed.`;
             }
         } else if (choice === "deny") {
             if (request.ruleViolated) {
-            newObedience += 1;
-            newHeadline = `${request.name} was denied. Policy upheld.`;
+                newObedience += 1;
+                newHeadline = `${request.name} was denied. Policy upheld.`;
             } else {
-            newMorality -= 1;
-            newHeadline = `A legal request by ${request.name} was unfairly denied.`;
+                newMorality -= 1;
+                newHeadline = `A legal request by ${request.name} was unfairly denied.`;
             }
         } else if (choice === "delay") {
             newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
@@ -97,10 +97,10 @@ const Game: React.FC = () => {
             <div>
                 <Newspaper morality={morality} obedience={obedience} />
                 <button
-                onClick={handleNextDay}
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+                    onClick={handleNextDay}
+                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
                 >
-                Continue to Next Day
+                    Continue to Next Day
                 </button>
             </div>
             )}
