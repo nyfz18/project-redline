@@ -30,9 +30,9 @@ const EndScreen: React.FC<Props> = (props) => {
 
     let ending = "";
 
-    if (obedience >= 15 && morality < 5) {
+    if (obedience > morality && morality < 5) {
         ending = "You rose through the ranks and became a high-ranking enforcer of the regime.";
-    } else if (morality >= 10 && obedience < 5) {
+    } else if (morality > obedience && obedience < 5) {
         ending = "You joined the rebellion. A revolution is on the horizon.";
     } else if (corruption >= 5) {
         ending = "Your greed led to your downfall. Executed for corruption.";

@@ -58,6 +58,7 @@ const Game: React.FC = () => {
         if (choice === "approve") {
             if (request.ruleViolated) {
                 newMorality += 1;
+                newObedience -= 1;
                 newHeadline = `You approved an illegal request. ${request.name} was saved.`;
             } else {
                 newObedience += 1;
@@ -71,8 +72,6 @@ const Game: React.FC = () => {
                 newMorality -= 1;
                 newHeadline = `A legal request by ${request.name} was unfairly denied.`;
             }
-        } else if (choice === "delay") {
-            newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
         }
 
         setMorality(newMorality);
@@ -108,6 +107,12 @@ const Game: React.FC = () => {
             <>
                 <RequestCard request={requests[index]} />
                 <DecisionButtons onDecision={handleDecision} />
+
+            {headlines.length > 0 && (
+            <div className="mt-4 p-4 bg-white rounded shadow text-center">
+                <p className="text-lg font-semibold">{headlines[headlines.length - 1]}</p>
+            </div>
+        )}
             </>
             ) : (
         <p>Loading request...</p>
