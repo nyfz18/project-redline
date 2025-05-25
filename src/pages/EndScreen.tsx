@@ -1,5 +1,7 @@
 // Shows the end screen of the game with the final stats and ending message
 
+import restartIcon from "../assets/restart.png";
+
 /*------------------------------------------------------------------------*/
 /* -------------------------------- Types ------------------------------- */
 /*------------------------------------------------------------------------*/
@@ -55,12 +57,12 @@ const EndScreen: React.FC<Props> = (props) => {
                 <p className="text-lg">{ending}</p>
             </div>
             <div className="mt-8 text-center">
-                <button
-                    onClick={onRestart}
-                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-                >
-                Restart Game
-                </button>
+                <img onClick=
+                    {onRestart}
+                    src={restartIcon} 
+                    alt="restart game" 
+                    style={{ width: "150px", height: "150px", objectFit: "contain", cursor: "pointer" }}
+                />
             </div>
         </div>
   );

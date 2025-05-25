@@ -39,7 +39,7 @@ function App() {
             setStarted(true)} 
             src={startIcon} 
             alt="start" 
-            style={{ width: "100px", height: "100px", objectFit: "contain", cursor: "pointer" }}
+            style={{ width: "200px", height: "200px", objectFit: "contain", cursor: "pointer" }}
           />
         </div>
       ) : (

@@ -126,7 +126,7 @@ const Game: React.FC<{ onRestart: () => void }> = ({ onRestart }) => {
                     {handleNextDay}
                     src={continueIcon} 
                     alt="continue to next day" 
-                    style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+                    style={{ width: "150px", height: "150px", objectFit: "contain" }} 
                 />
             </div>
             )}
