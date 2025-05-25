@@ -1,115 +1,111 @@
 // main game screen
 
-// Import React 
 import { 
-    useState 
+    useState, 
+    useEffect,
 } from "react";
 
-// Import components
+// Components
 import RequestCard from "../components/RequestCard";
 import DecisionButtons from "../components/DecisionButtons";
 import Newspaper from "../components/Newspaper";
-
-// Import data
-import requestsData from "../data/requests.json";
-
-// Import utils
 import ScoreTracker from "../utils/scoreTracker";
-
-// Import end screen
 import EndScreen from "./EndScreen";
 
-// Request details of a citizen
-type Request = {
-    id: number;
-    name: string;
-    occupation: string;
-    reason: string;
-    ruleViolated?: boolean;
-};
+// Utils
+import RequestGenerator, { 
+    CitizenRequest,
+} from "../utils/requestGenerator";
 
-const Game: React.FC = () => {    
+const REQUESTS_PER_DAY = 5;
+
+const Game: React.FC = () => {
     const [day, setDay] = useState(1);
     const [index, setIndex] = useState(0);
     const [showNews, setShowNews] = useState(false);
 
     const [morality, setMorality] = useState(0);
     const [obedience, setObedience] = useState(0);
-
     const [headlines, setHeadlines] = useState<string[]>([]);
 
-    const requests: Request[] = requestsData;
+    const [requests, setRequests] = useState<CitizenRequest[]>([]);
+
+    // Generate initial requests
+    useEffect(() => {
+        setRequests(RequestGenerator.generateRequestBatch(REQUESTS_PER_DAY));
+    }, []);
 
     const handleDecision = (choice: string) => {
-    const request = requests[index];
-    let newMorality = morality;
-    let newObedience = obedience;
-    let newHeadline = "";
+        const request = requests[index];
+        let newMorality = morality;
+        let newObedience = obedience;
+        let newHeadline = "";
 
-    if (choice === "approve") {
-        if (request.ruleViolated) {
+        if (choice === "approve") {
+            if (request.ruleViolated) {
             newMorality += 1;
             newHeadline = `You approved an illegal request. ${request.name} was saved.`;
-        } else {
+            } else {
             newObedience += 1;
             newHeadline = `${request.name} received approval. All rules followed.`;
-        }
-    } else if (choice === "deny") {
-        if (request.ruleViolated) {
+            }
+        } else if (choice === "deny") {
+            if (request.ruleViolated) {
             newObedience += 1;
             newHeadline = `${request.name} was denied. Policy upheld.`;
-        } else {
+            } else {
             newMorality -= 1;
             newHeadline = `A legal request by ${request.name} was unfairly denied.`;
+            }
+        } else if (choice === "delay") {
+            newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
         }
-    } else if (choice === "delay") {
-        newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
-    }
 
-    setMorality(newMorality);
-    setObedience(newObedience);
-    setHeadlines([...headlines, newHeadline]);
+        setMorality(newMorality);
+        setObedience(newObedience);
+        setHeadlines([...headlines, newHeadline]);
 
-    if ((index + 1) % 5 === 0) {
-        setShowNews(true);
-    } else {
-        setIndex(index + 1);
-    }
-};
+        if ((index + 1) % REQUESTS_PER_DAY === 0) {
+            setShowNews(true);
+        } else {
+            setIndex(index + 1);
+        }
+    };
 
     const handleNextDay = () => {
         setShowNews(false);
-        setIndex(index + 1);
+        setIndex(0);
         setDay(day + 1);
         setHeadlines([]);
+        setRequests(RequestGenerator.generateRequestBatch(REQUESTS_PER_DAY)); // New batch each day
     };
 
-    if (index >= requests.length) {
+    if (index >= requests.length && !showNews) {
         return <EndScreen morality={morality} obedience={obedience} />;
     }
 
     return (
         <div className="p-6 space-y-6">
-        <h1 className="text-2xl font-bold">Day {day}</h1>
-        {!showNews ? (
+            <h1 className="text-2xl font-bold">Day {day}</h1>
+            {!showNews ? (
             <>
-            <RequestCard request={requests[index]} />
-            <DecisionButtons onDecision={handleDecision} />
-            <ScoreTracker morality={morality} obedience={obedience} />
-        </>
-        ) : (
-        <div>
-            <Newspaper headlines={headlines} />
-            <button
-            onClick={handleNextDay}
-            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-            >
-            Continue to Next Day
-            </button>
+                <RequestCard request={requests[index]} />
+                <DecisionButtons onDecision={handleDecision} />
+                <ScoreTracker morality={morality} obedience={obedience} />
+            </>
+            ) : (
+            <div>
+                <Newspaper morality={morality} obedience={obedience} />
+                <button
+                onClick={handleNextDay}
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+                >
+                Continue to Next Day
+                </button>
+            </div>
+            )}
         </div>
-        )}
-    </div>
-);
-}
+  );
+};
 
-export default Game; 
+export default Game;

@@ -31,12 +31,12 @@ const ScoreTracker: React.FC<Props> = (props) => {
             <strong>Obedience:</strong> 
             {obedience}
         </p>
-        {corruption !== undefined && (
+        {/* {corruption !== undefined && (
             <p>
             <strong>Corruption:</strong> 
             {corruption}
             </p>
-        )}
+        )} */}
         </div>
   );
 }
