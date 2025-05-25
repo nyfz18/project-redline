@@ -1,3 +1,6 @@
+import approveIcon from "../assets/approve.png";
+import denyIcon from "../assets/deny.png";
+
 // Props definition 
 type Props = {
   onDecision: (choice: string) => void;
@@ -7,18 +10,18 @@ type Props = {
 const DecisionButtons: React.FC<Props> = ({ onDecision }: Props) => {
     return (
     <div className="flex justify-around mt-4">
-        <button onClick={() => 
+        <img onClick={() => 
             onDecision("approve")} 
-            className="btn"
-            >
-            Approve
-        </button>
-        <button onClick={() => 
+            src={approveIcon} 
+            alt="Approve" 
+            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+        />
+        <img onClick={() => 
             onDecision("deny")} 
-            className="btn"
-            >
-            Deny
-        </button>
+            src={denyIcon} 
+            alt="Deny"
+            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+        />
     </div>
     );
 }
