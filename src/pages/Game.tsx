@@ -5,6 +5,9 @@ import {
     useEffect,
 } from "react";
 
+// Assets 
+import continueIcon from "../assets/continue.png";
+
 // Components
 import RequestCard from "../components/RequestCard";
 import DecisionButtons from "../components/DecisionButtons";
@@ -18,6 +21,7 @@ import RequestGenerator, {
 } from "../utils/requestGenerator";
 
 const REQUESTS_PER_DAY = 5;
+const MAX_DAYS = 3;
 
 const Game: React.FC = () => {
     const [day, setDay] = useState(1);
@@ -43,19 +47,19 @@ const Game: React.FC = () => {
 
         if (choice === "approve") {
             if (request.ruleViolated) {
-            newMorality += 1;
-            newHeadline = `You approved an illegal request. ${request.name} was saved.`;
+                newMorality += 1;
+                newHeadline = `You approved an illegal request. ${request.name} was saved.`;
             } else {
-            newObedience += 1;
-            newHeadline = `${request.name} received approval. All rules followed.`;
+                newObedience += 1;
+                newHeadline = `${request.name} received approval. All rules followed.`;
             }
         } else if (choice === "deny") {
             if (request.ruleViolated) {
-            newObedience += 1;
-            newHeadline = `${request.name} was denied. Policy upheld.`;
+                newObedience += 1;
+                newHeadline = `${request.name} was denied. Policy upheld.`;
             } else {
-            newMorality -= 1;
-            newHeadline = `A legal request by ${request.name} was unfairly denied.`;
+                newMorality -= 1;
+                newHeadline = `A legal request by ${request.name} was unfairly denied.`;
             }
         } else if (choice === "delay") {
             newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
@@ -80,7 +84,8 @@ const Game: React.FC = () => {
         setRequests(RequestGenerator.generateRequestBatch(REQUESTS_PER_DAY)); // New batch each day
     };
 
-    if (index >= requests.length && !showNews) {
+    if (day > MAX_DAYS && !showNews) {
+
         return <EndScreen morality={morality} obedience={obedience} />;
     }
 
@@ -88,20 +93,26 @@ const Game: React.FC = () => {
         <div className="p-6 space-y-6">
             <h1 className="text-2xl font-bold">Day {day}</h1>
             {!showNews ? (
+        <>
+        {requests[index] ? (
             <>
                 <RequestCard request={requests[index]} />
                 <DecisionButtons onDecision={handleDecision} />
-                <ScoreTracker morality={morality} obedience={obedience} />
             </>
             ) : (
+        <p>Loading request...</p>
+        )}
+        <ScoreTracker morality={morality} obedience={obedience} />
+        </>
+        ) : (
             <div>
                 <Newspaper morality={morality} obedience={obedience} />
-                <button
-                onClick={handleNextDay}
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                Continue to Next Day
-                </button>
+                <img onClick=
+                    {handleNextDay}
+                    src={continueIcon} 
+                    alt="continue to next day" 
+                    style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+                />
             </div>
             )}
         </div>

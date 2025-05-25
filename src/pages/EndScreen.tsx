@@ -30,14 +30,14 @@ const EndScreen: React.FC<Props> = (props) => {
 
     let ending = "";
 
-    if (obedience >= 10 && morality <= 0) {
-    ending = "You rose through the ranks and became a high-ranking enforcer of the regime.";
+    if (obedience >= 15 && morality < 5) {
+        ending = "You rose through the ranks and became a high-ranking enforcer of the regime.";
     } else if (morality >= 10 && obedience < 5) {
-    ending = "You joined the rebellion. A revolution is on the horizon.";
+        ending = "You joined the rebellion. A revolution is on the horizon.";
     } else if (corruption >= 5) {
-    ending = "Your greed led to your downfall. Executed for corruption.";
+        ending = "Your greed led to your downfall. Executed for corruption.";
     } else {
-    ending = "You tried to balance both worlds. Neither side fully trusts you.";
+        ending = "You tried to balance both worlds. Neither side fully trusts you.";
     }
 
     return (
@@ -47,7 +47,7 @@ const EndScreen: React.FC<Props> = (props) => {
         <p><strong>Obedience:</strong> {obedience}</p>
         <p><strong>Corruption:</strong> {corruption}</p>
         <div className="mt-6">
-        <p className="text-lg">{ending}</p>
+            <p className="text-lg">{ending}</p>
         </div>
     </div>
   );

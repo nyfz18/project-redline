@@ -1,5 +1,8 @@
 // the card UI
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+
 // Request details of a citizen
 type Request = {
     // Unique Citizen ID 
@@ -35,7 +38,8 @@ const RequestCard: React.FC<Props> = ({ request }: Props) => {
             </p>
             {request.ruleViolated && 
                 <p className="text-red-500">
-                    ⚠️ Rule Violation Detected
+                    <FontAwesomeIcon icon={faCircleExclamation} />
+                    Rule Violation Detected
                 </p>}
         </div>
     );
