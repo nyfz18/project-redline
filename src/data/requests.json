@@ -1,1 +1,23 @@
-// sample citizen requests
+[
+  {
+    "id": 1,
+    "name": "Anna K.",
+    "occupation": "Nurse",
+    "reason": "Needs work permit renewal",
+    "ruleViolated": false
+  },
+  {
+    "id": 2,
+    "name": "Tomas V.",
+    "occupation": "Factory Worker",
+    "reason": "Applying for sick leave despite forged documents",
+    "ruleViolated": true
+  },
+  {
+    "id": 3,
+    "name": "Leila A.",
+    "occupation": "Teacher",
+    "reason": "Requesting clearance to care for aging mother",
+    "ruleViolated": true
+  }
+]
