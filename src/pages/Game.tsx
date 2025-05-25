@@ -21,7 +21,7 @@ import RequestGenerator, {
 } from "../utils/requestGenerator";
 
 const REQUESTS_PER_DAY = 5;
-const MAX_DAYS = 7;
+const MAX_DAYS = 3;
 
 const Game: React.FC = () => {
     const [day, setDay] = useState(1);
