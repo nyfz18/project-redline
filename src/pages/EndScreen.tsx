@@ -47,7 +47,7 @@ const EndScreen: React.FC<Props> = (props) => {
         <p><strong>Obedience:</strong> {obedience}</p>
         <p><strong>Corruption:</strong> {corruption}</p>
         <div className="mt-6">
-        <p className="text-lg">{ending}</p>
+            <p className="text-lg">{ending}</p>
         </div>
     </div>
   );
