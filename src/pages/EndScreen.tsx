@@ -6,9 +6,10 @@
 
 // Props definition
 type Props = {
-  morality: number;
-  obedience: number;
-  corruption?: number;
+    morality: number;
+    obedience: number;
+    corruption?: number;
+    onRestart: () => void;
 };
 
 /*------------------------------------------------------------------------*/
@@ -26,14 +27,17 @@ const EndScreen: React.FC<Props> = (props) => {
         morality,
         obedience,
         corruption = 0,
+        onRestart,
     } = props;
 
     let ending = "";
 
-    if (obedience > morality && morality < 5) {
+    if (obedience > 10 && morality < 5) {
         ending = "You rose through the ranks and became a high-ranking enforcer of the regime.";
-    } else if (morality > obedience && obedience < 5) {
-        ending = "You joined the rebellion. A revolution is on the horizon.";
+    } else if (obedience > morality && obedience < 10) {
+        ending = "Congratulations. You got promoted. The regime trusts you.";
+    }  else if (morality > obedience && obedience < 5) {
+        ending = "You joined the rebellion. A revolution is on the horizon. You have been banished by the regime.";
     } else if (corruption >= 5) {
         ending = "Your greed led to your downfall. Executed for corruption.";
     } else {
@@ -48,6 +52,14 @@ const EndScreen: React.FC<Props> = (props) => {
         <p><strong>Corruption:</strong> {corruption}</p>
         <div className="mt-6">
             <p className="text-lg">{ending}</p>
+        </div>
+        <div className="mt-8 text-center">
+            <button
+                onClick={onRestart}
+                className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+            >
+            Restart Game
+            </button>
         </div>
     </div>
   );

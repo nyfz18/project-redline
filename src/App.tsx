@@ -13,6 +13,11 @@ import './App.css';
 function App() {
   const [started, setStarted] = useState(false);
 
+  // Function to handle restarting the game
+  const handleRestart = () => {
+    setStarted(false);
+  };
+
   return (
     <div className="app-container">
       {!started ? (
@@ -38,7 +43,7 @@ function App() {
           />
         </div>
       ) : (
-        <Game />
+        <Game onRestart={handleRestart} />
       )}
     </div>
   );

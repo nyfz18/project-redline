@@ -26,7 +26,7 @@ const MAX_DAYS = 3;
 /*------------------------------------------------------------------------*/
 /* ------------------------------ Component ----------------------------- */
 /*------------------------------------------------------------------------*/
-const Game: React.FC = () => {
+const Game: React.FC<{ onRestart: () => void }> = ({ onRestart }) => {
     /*------------------------------------------------------------------------*/
     /* -------------------------------- Setup ------------------------------- */
     /*------------------------------------------------------------------------*/
@@ -94,8 +94,7 @@ const Game: React.FC = () => {
     };
 
     if (day > MAX_DAYS && !showNews) {
-
-        return <EndScreen morality={morality} obedience={obedience} />;
+        return <EndScreen morality={morality} obedience={obedience} corruption={0} onRestart={onRestart} />;
     }
 
     return (
