@@ -6,27 +6,40 @@ type Props = {
     corruption?: number;
 };
 
-export default function ScoreTracker({
-    morality,
-    obedience,
-    corruption,
-}: Props) {
-  return (
-    <div className="p-4 bg-gray-100 rounded shadow-md">
-    <p>
-        <strong>Morality:</strong> 
-        {morality}
-    </p>
-    <p>
-        <strong>Obedience:</strong> 
-        {obedience}
-    </p>
-    {corruption !== undefined && (
+/*------------------------------------------------------------------------*/
+/* ------------------------------ Component ----------------------------- */
+/*------------------------------------------------------------------------*/
+const ScoreTracker: React.FC<Props> = (props) => {
+    /*------------------------------------------------------------------------*/
+    /* -------------------------------- Setup ------------------------------- */
+    /*------------------------------------------------------------------------*/
+
+    /* -------------- Props ------------- */
+    // Destructure all props
+    const {
+        morality,
+        obedience,
+        corruption = 0,
+    } = props;
+    return (
+        <div className="p-4 bg-gray-100 rounded shadow-md">
         <p>
+            <strong>Morality:</strong> 
+            {morality}
+        </p>
+        <p>
+            <strong>Obedience:</strong> 
+            {obedience}
+        </p>
+        {corruption !== undefined && (
+            <p>
             <strong>Corruption:</strong> 
             {corruption}
-        </p>
-    )}
-    </div>
+            </p>
+        )}
+        </div>
   );
 }
+
+// Export ScoreTracker component
+export default ScoreTracker;
