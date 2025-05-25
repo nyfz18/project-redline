@@ -1,1 +1,0 @@
-// Helper for Morality/Obedience score tracking
