@@ -1,5 +1,6 @@
 // Helper for Morality/Obedience score tracking
 
+// Props definition
 type Props = {
     morality: number;
     obedience: number;
@@ -21,6 +22,7 @@ const ScoreTracker: React.FC<Props> = (props) => {
         obedience,
         corruption = 0,
     } = props;
+    
     return (
         <div className="p-4 bg-gray-100 rounded shadow-md">
         <p>

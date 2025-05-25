@@ -20,6 +20,7 @@ import RequestGenerator, {
     CitizenRequest,
 } from "../utils/requestGenerator";
 
+// Constants
 const REQUESTS_PER_DAY = 5;
 const MAX_DAYS = 3;
 

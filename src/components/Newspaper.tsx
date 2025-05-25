@@ -59,4 +59,5 @@ const Newspaper: React.FC<Props> = ({ morality, obedience }) => {
     );
 };
 
+// Export Newspaper component
 export default Newspaper;

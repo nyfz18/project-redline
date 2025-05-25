@@ -32,6 +32,7 @@ const EndScreen: React.FC<Props> = (props) => {
 
     let ending = "";
 
+    // Determine the ending based on morality, obedience, and corruption
     if (obedience > 10 && morality < 5) {
         ending = "You rose through the ranks and became a high-ranking enforcer of the regime.";
     } else if (obedience > morality && obedience < 10) {
@@ -45,23 +46,23 @@ const EndScreen: React.FC<Props> = (props) => {
     }
 
     return (
-    <div className="p-8 bg-white shadow-lg rounded">
-        <h2 className="text-2xl font-bold mb-4">Game Over</h2>
-        <p><strong>Morality:</strong> {morality}</p>
-        <p><strong>Obedience:</strong> {obedience}</p>
-        <p><strong>Corruption:</strong> {corruption}</p>
-        <div className="mt-6">
-            <p className="text-lg">{ending}</p>
+        <div className="p-8 bg-white shadow-lg rounded">
+            <h2 className="text-2xl font-bold mb-4">Game Over</h2>
+            <p><strong>Morality:</strong> {morality}</p>
+            <p><strong>Obedience:</strong> {obedience}</p>
+            <p><strong>Corruption:</strong> {corruption}</p>
+            <div className="mt-6">
+                <p className="text-lg">{ending}</p>
+            </div>
+            <div className="mt-8 text-center">
+                <button
+                    onClick={onRestart}
+                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                >
+                Restart Game
+                </button>
+            </div>
         </div>
-        <div className="mt-8 text-center">
-            <button
-                onClick={onRestart}
-                className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-            >
-            Restart Game
-            </button>
-        </div>
-    </div>
   );
 }
 
