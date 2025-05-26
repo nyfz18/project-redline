@@ -13,6 +13,11 @@ import './App.css';
 function App() {
   const [started, setStarted] = useState(false);
 
+  // Function to handle restarting the game
+  const handleRestart = () => {
+    setStarted(false);
+  };
+
   return (
     <div className="app-container">
       {!started ? (
@@ -34,11 +39,11 @@ function App() {
             setStarted(true)} 
             src={startIcon} 
             alt="start" 
-            style={{ width: "100px", height: "100px", objectFit: "contain", cursor: "pointer" }}
+            style={{ width: "200px", height: "200px", objectFit: "contain", cursor: "pointer" }}
           />
         </div>
       ) : (
-        <Game />
+        <Game onRestart={handleRestart} />
       )}
     </div>
   );

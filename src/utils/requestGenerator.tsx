@@ -75,14 +75,14 @@ const generateCitizenRequest = (id: number): CitizenRequest => {
     };
 };
 
-const generateRequestBatch = (count: number): CitizenRequest[] => {
-    return Array.from({ length: count }, (_, i) => generateCitizenRequest(i + 1));
-};
+    const generateRequestBatch = (count: number): CitizenRequest[] => {
+        return Array.from({ length: count }, (_, i) => generateCitizenRequest(i + 1));
+    };
 
-const RequestGenerator = {
-    generateCitizenRequest,
-    generateRequestBatch
-};
+    const RequestGenerator = {
+        generateCitizenRequest,
+        generateRequestBatch
+    };
 
 // Export RequestGenerator
 export default RequestGenerator;

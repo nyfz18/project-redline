@@ -1,3 +1,4 @@
+// importing assets
 import approveIcon from "../assets/approve.png";
 import denyIcon from "../assets/deny.png";
 
@@ -14,13 +15,13 @@ const DecisionButtons: React.FC<Props> = ({ onDecision }: Props) => {
             onDecision("approve")} 
             src={approveIcon} 
             alt="Approve" 
-            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+            style={{ width: "100px", height: "100px", objectFit: "contain", cursor: "pointer" }}
         />
         <img onClick={() => 
             onDecision("deny")} 
             src={denyIcon} 
             alt="Deny"
-            style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+            style={{ width: "100px", height: "100px", objectFit: "contain", cursor: "pointer" }}
         />
     </div>
     );

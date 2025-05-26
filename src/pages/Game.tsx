@@ -20,10 +20,17 @@ import RequestGenerator, {
     CitizenRequest,
 } from "../utils/requestGenerator";
 
+// Constants
 const REQUESTS_PER_DAY = 5;
 const MAX_DAYS = 3;
 
-const Game: React.FC = () => {
+/*------------------------------------------------------------------------*/
+/* ------------------------------ Component ----------------------------- */
+/*------------------------------------------------------------------------*/
+const Game: React.FC<{ onRestart: () => void }> = ({ onRestart }) => {
+    /*------------------------------------------------------------------------*/
+    /* -------------------------------- Setup ------------------------------- */
+    /*------------------------------------------------------------------------*/
     const [day, setDay] = useState(1);
     const [index, setIndex] = useState(0);
     const [showNews, setShowNews] = useState(false);
@@ -33,6 +40,10 @@ const Game: React.FC = () => {
     const [headlines, setHeadlines] = useState<string[]>([]);
 
     const [requests, setRequests] = useState<CitizenRequest[]>([]);
+
+    /*------------------------------------------------------------------------*/
+    /* ------------------------- Lifecycle Functions ------------------------ */
+    /*------------------------------------------------------------------------*/
 
     // Generate initial requests
     useEffect(() => {
@@ -48,6 +59,7 @@ const Game: React.FC = () => {
         if (choice === "approve") {
             if (request.ruleViolated) {
                 newMorality += 1;
+                newObedience -= 1;
                 newHeadline = `You approved an illegal request. ${request.name} was saved.`;
             } else {
                 newObedience += 1;
@@ -61,8 +73,6 @@ const Game: React.FC = () => {
                 newMorality -= 1;
                 newHeadline = `A legal request by ${request.name} was unfairly denied.`;
             }
-        } else if (choice === "delay") {
-            newHeadline = `${request.name}'s request was delayed. Situation unresolved.`;
         }
 
         setMorality(newMorality);
@@ -85,8 +95,7 @@ const Game: React.FC = () => {
     };
 
     if (day > MAX_DAYS && !showNews) {
-
-        return <EndScreen morality={morality} obedience={obedience} />;
+        return <EndScreen morality={morality} obedience={obedience} corruption={0} onRestart={onRestart} />;
     }
 
     return (
@@ -98,6 +107,12 @@ const Game: React.FC = () => {
             <>
                 <RequestCard request={requests[index]} />
                 <DecisionButtons onDecision={handleDecision} />
+
+            {headlines.length > 0 && (
+            <div className="mt-4 p-4 bg-white rounded shadow text-center">
+                <p className="text-lg font-semibold">{headlines[headlines.length - 1]}</p>
+            </div>
+        )}
             </>
             ) : (
         <p>Loading request...</p>
@@ -111,7 +126,7 @@ const Game: React.FC = () => {
                     {handleNextDay}
                     src={continueIcon} 
                     alt="continue to next day" 
-                    style={{ width: "100px", height: "100px", objectFit: "contain" }} 
+                    style={{ width: "150px", height: "150px", objectFit: "contain" }} 
                 />
             </div>
             )}
@@ -119,4 +134,5 @@ const Game: React.FC = () => {
   );
 };
 
+// Export Game Component
 export default Game;
